@@ -56,7 +56,7 @@ ScreenShotTool::ScreenShotTool(QWidget *parent) :
     setParent(xparent);
 
     this->setWindowFlags(Qt::Dialog|Qt::WindowCloseButtonHint|Qt::WindowStaysOnTopHint);
-    this->setWindowTitle(tr("Setting"));
+    this->setWindowTitle(tr("设置"));
     this->setWindowIcon(QIcon(":/ss.ico"));
 
     keystring=new KeyString();
@@ -125,14 +125,9 @@ void ScreenShotTool::initTray()             //初始化托盘
     m_systemTray->setIcon(QIcon(":/ss.ico"));
     m_systemTray->setToolTip("ScreenShot");
 
-    setAction=new QAction(tr("Setting"),this);
-    aboutAction=new QAction(tr("About"),this);
-    exitAction=new QAction(tr("Quit"),this);
+    exitAction=new QAction(tr("退出"),this);
 
     QMenu *trayMenu=new QMenu(this);
-    trayMenu->addAction(setAction);
-    trayMenu->addAction(aboutAction);
-    trayMenu->addSeparator();
     trayMenu->addAction(exitAction);
 
     m_systemTray->setContextMenu(trayMenu);
@@ -140,8 +135,6 @@ void ScreenShotTool::initTray()             //初始化托盘
     m_systemTray->show();
 
     connect(m_systemTray,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),this,SLOT(slt_clickTray(QSystemTrayIcon::ActivationReason)));
-    connect(setAction,SIGNAL(triggered(bool)),this,SLOT(slt_setAction()));
-    connect(aboutAction,SIGNAL(triggered(bool)),this,SLOT(slt_aboutAction()));
     connect(exitAction,SIGNAL(triggered(bool)),this,SLOT(slt_exitAction()));
 }
 
@@ -366,6 +359,7 @@ quint32 ScreenShotTool::nativeKeycode(Qt::Key key)                      //key值
 #endif
     return 0;
 }
+
 quint32 ScreenShotTool::nativeModifiers(Qt::KeyboardModifiers modifiers)                //mod值转换
 {
     quint32 native = 0;
@@ -394,6 +388,7 @@ bool  ScreenShotTool::registerHotKey(Qt::Key key,Qt::KeyboardModifiers modifiers
     return RegisterHotKey(0, nativeMods ^ nativeKey, nativeMods, nativeKey);
 #endif
 }
+
 bool  ScreenShotTool::unregisterHotKey(Qt::Key key,Qt::KeyboardModifiers modifiers)     //注销快捷键
 {
 #ifdef Q_OS_WIN
@@ -480,8 +475,7 @@ void ScreenShotTool::changeLanguage(QString lan)
 
 void ScreenShotTool::reFrash()
 {
-    this->setWindowTitle(tr("Setting"));
-    setAction->setText(tr("Setting"));
-    aboutAction->setText(tr("About"));
-    exitAction->setText(tr("Quit"));
+    this->setWindowTitle(tr("设置"));
+    setAction->setText(tr("设置"));
+    exitAction->setText(tr("退出"));
 }

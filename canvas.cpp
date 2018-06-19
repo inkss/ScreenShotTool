@@ -40,6 +40,7 @@ Canvas::Canvas(QWidget *parent) : QWidget(parent)
     drawEditFlag=0;
 }
 
+// 画布初始化
 void Canvas::canvasInit()
 {
     pointS.rx()=0;
@@ -59,6 +60,7 @@ void Canvas::canvasInit()
     drawPen.setStyle(Qt::SolidLine);
 }
 
+// 鼠标点击事件
 void Canvas::mousePressEvent(QMouseEvent *event)
 {
     if(event->button()==Qt::LeftButton)
@@ -132,6 +134,7 @@ void Canvas::mousePressEvent(QMouseEvent *event)
     }
 }
 
+// 鼠标移动事件
 void Canvas::mouseMoveEvent(QMouseEvent *event)
 {
     if(event->buttons()&Qt::LeftButton)
@@ -300,6 +303,7 @@ void Canvas::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
+// 鼠标绘制完成事件
 void Canvas::mouseReleaseEvent(QMouseEvent *event)
 {
     if(event->button()==Qt::LeftButton)
@@ -345,6 +349,7 @@ void Canvas::mouseReleaseEvent(QMouseEvent *event)
     }
 }
 
+// 画图事件
 void Canvas::paintEvent(QPaintEvent *e)
 {
 
@@ -422,7 +427,8 @@ void Canvas::setbgPixmap(QPixmap &px)
     fullPixmap=px;
 }
 
-void Canvas::shootScreen(QRectF &rect)      //截图函数
+// 截图函数
+void Canvas::shootScreen(QRectF &rect)
 {
     QScreen *screen = QGuiApplication::primaryScreen();
 
@@ -430,20 +436,21 @@ void Canvas::shootScreen(QRectF &rect)      //截图函数
 
 }
 
-void Canvas::initToolBar()                  //工具条初始化
+// 工具条初始化
+void Canvas::initToolBar()
 {
     toolbar=new QWidget(this);
 
     QWidget *MainToolBar=new QWidget();                    //主工具栏
     QHBoxLayout *mainToolLayout=new QHBoxLayout();
 
-    btn_cancel=new QPushButton(tr("Quit"));
-    btn_saveClipboard=new QPushButton(tr("Copy"));
-    btn_saveFile=new QPushButton(tr("Save"));
+    btn_cancel=new QPushButton(tr("退出"));
+    btn_saveClipboard=new QPushButton(tr("复制"));
+    btn_saveFile=new QPushButton(tr("保存"));
 
-    btn_drawLine=new QPushButton(tr("Line"));
-    btn_drawRect=new QPushButton(tr("Rect"));
-    btn_drawEllipse=new QPushButton(tr("Ellipse"));
+    btn_drawLine=new QPushButton(tr("直线"));
+    btn_drawRect=new QPushButton(tr("矩形"));
+    btn_drawEllipse=new QPushButton(tr("椭圆"));
 
     btn_cancel->setStyleSheet("background-color: rgb(255, 255, 255);");
     btn_saveClipboard->setStyleSheet("background-color: rgb(255, 255, 255);");
@@ -540,7 +547,8 @@ void Canvas::initToolBar()                  //工具条初始化
     connect(cbx_lineStyle,SIGNAL(currentIndexChanged(int)),SLOT(slt_changePenStyle(int)));
 }
 
-void Canvas::showToolBar()            //显示工具条
+// 显示工具条
+void Canvas::showToolBar()
 {
     qreal x,y;
 
@@ -577,19 +585,21 @@ void Canvas::showToolBar()            //显示工具条
     toolbar->setVisible(true);
 }
 
-void Canvas::hideToolBar()                    //掩藏工具条
+// 掩藏工具条
+void Canvas::hideToolBar()
 {
     toolbar->setVisible(false);
 }
 
+// 刷新语言库
 void Canvas::refrashToolBar()
 {
-    btn_drawLine->setText(tr("Line"));
-    btn_drawRect->setText(tr("Rect"));
-    btn_drawEllipse->setText(tr("Ellipse"));
-    btn_cancel->setText(tr("Quit"));
-    btn_saveClipboard->setText(tr("Copy"));
-    btn_saveFile->setText(tr("Save"));
+    btn_drawLine->setText(tr("直线"));
+    btn_drawRect->setText(tr("矩形"));
+    btn_drawEllipse->setText(tr("椭圆"));
+    btn_cancel->setText(tr("退出"));
+    btn_saveClipboard->setText(tr("复制"));
+    btn_saveFile->setText(tr("保存"));
 }
 
 void Canvas::slt_drawLine()
@@ -674,9 +684,9 @@ void Canvas::slt_saveFile()
     QString savepath=OperateSet::readSetting("Setting","QuickSaveDir",".").toString();
 
     QString fileName = QFileDialog::getSaveFileName(this,
-            tr("Save File"),
+            tr("保存文件"),
             savepath+"/"+savefile,
-            tr("JPEG File (*.jpg)"));
+            tr("JPEG 文件 (*.jpg)"));
     originalPixmap.save(fileName,"jpg");
 
     QFileInfo fi = QFileInfo(fileName);
