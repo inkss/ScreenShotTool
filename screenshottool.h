@@ -24,9 +24,6 @@
 
 #include <QAbstractNativeEventFilter>
 
-#ifdef Q_OS_WIN
-#include <windows.h>
-#endif
 
 namespace Ui {
 class ScreenShotTool;

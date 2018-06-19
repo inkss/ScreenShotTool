@@ -19,9 +19,6 @@ LinePaint::LinePaint(int x1, int y1, int x2, int y2)
 void LinePaint::setPen(QPen pen)
 {
     drawPen=pen;
-//    qDebug()<<drawPen.color().red()<<drawPen.color().green()<<drawPen.color().blue();
-//    qDebug()<<drawPen.width();
-//    qDebug()<<drawPen.style();
 }
 
 QPen LinePaint::getPen()
