@@ -56,21 +56,12 @@ public:
     void initToolBar();
     void showToolBar();
     void hideToolBar();
-    void refrashToolBar();
 
-    //void initShapeToolBar();
-    //void showShapeToolBar();
-    //void hideShapeToolBar();
-
-    //void initShapeToolBar();
-    //void showShapeToolBar();
-    //void hideShapeToolBar();
 
     quint8 caputerRect(QRectF t_rect,qreal t_x,qreal t_y);
 
     RectPaint getRectF(QPointF p1,QPointF p2);    //通过两个坐标点生成矩形
 
-    void changeLanguage(QString lan);
 
 signals:
 

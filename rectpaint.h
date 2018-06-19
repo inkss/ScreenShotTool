@@ -6,7 +6,6 @@
 #include <QPen>
 #include <QPointF>
 
-
 class RectPaint : public QRectF
 {
 public:
@@ -15,7 +14,6 @@ public:
     RectPaint(const QPointF &topLeft, const QPointF &bottomRight);
     RectPaint(qreal x, qreal y, qreal width, qreal height);
     RectPaint(const QRect &rectangle);
-
 
     void setPen(QPen pen);
     QPen getPen();

@@ -3,7 +3,6 @@
 #include <QGuiApplication>
 #include <QTranslator>
 
-
 /*
  * Author:qiuzhiqian
  * Email:xia_mengliang@163.com
@@ -19,7 +18,7 @@ int main(int argc, char *argv[])
     ScreenShotTool w;
     w.hide();
 
-    a.installNativeEventFilter(&w);             //注册windows全局事件，用来启用全局热键
+    a.installNativeEventFilter(&w);
 
     return a.exec();
 }

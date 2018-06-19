@@ -20,16 +20,11 @@
 #include <QMenu>
 
 #include "canvas.h"
-#include "hotkeybar.h"
 
 #include <QAbstractNativeEventFilter>
 
 
-namespace Ui {
-class ScreenShotTool;
-}
-
-class ScreenShotTool : public QWidget,public QAbstractNativeEventFilter     //继承QAbstractNativeEventFilter用来捕捉windows事件，从而实现全局热键
+class ScreenShotTool : public QWidget,public QAbstractNativeEventFilter
 {
     Q_OBJECT
 
@@ -40,58 +35,23 @@ public:
     void initTray();                //初始化托盘
     void ss_start();                //开始截图
 
-    void setHotKey();
-
     virtual bool nativeEventFilter(const QByteArray &eventType, void *message, long *result);
 
-    quint32 nativeKeycode(Qt::Key key);
-    quint32 nativeModifiers(Qt::KeyboardModifiers modifiers);
-    bool  registerHotKey(Qt::Key key,Qt::KeyboardModifiers modifiers);
-    bool  unregisterHotKey(Qt::Key key,Qt::KeyboardModifiers modifiers);
-
-    void setAutoRun(bool sta);
-
-    void changeLanguage(QString lan);
-    void reFrash();
-
 private:
-    Ui::ScreenShotTool *ui;
 
     Canvas *screenCanvas;
-
     QPixmap fullPixmap;
-
     QSystemTrayIcon *m_systemTray;  //系统托盘
-    QAction *setAction;
-    QAction *aboutAction;
     QAction *exitAction;
-
     void closeEvent( QCloseEvent * event );     //重写退出
     bool closeFlag=false;
-
-    HotKeyBar *sc_set;
-
-    Qt::Key key;
-    Qt::KeyboardModifiers mods;
-    KeyString *keystring;
-
-    bool isAutoRun=false;
 
 signals:
     void appQuit();
 
-
 private slots:
-
     void slt_clickTray(QSystemTrayIcon::ActivationReason reason);
-    void slt_setAction();
-    void slt_aboutAction();
     void slt_exitAction();
-
-    void slt_changeHotKey(Qt::Key t_key, Qt::KeyboardModifiers t_mod);
-
-    void slt_auto_run(int states);
-    void slt_language_set(int index);
 };
 
 #endif // SCREENSHOTTOOL_H

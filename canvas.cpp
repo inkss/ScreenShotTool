@@ -591,16 +591,7 @@ void Canvas::hideToolBar()
     toolbar->setVisible(false);
 }
 
-// 刷新语言库
-void Canvas::refrashToolBar()
-{
-    btn_drawLine->setText(tr("直线"));
-    btn_drawRect->setText(tr("矩形"));
-    btn_drawEllipse->setText(tr("椭圆"));
-    btn_cancel->setText(tr("退出"));
-    btn_saveClipboard->setText(tr("复制"));
-    btn_saveFile->setText(tr("保存"));
-}
+
 
 void Canvas::slt_drawLine()
 {
@@ -791,26 +782,7 @@ RectPaint Canvas::getRectF(QPointF p1, QPointF p2)
     return rect;
 }
 
-void Canvas::changeLanguage(QString lan)
-{
-    QTranslator translator;
-    bool sta=false;
 
-    if(lan=="zh_cn")    //简体中文
-    {
-        sta=translator.load("zh_cn.qm");
-    }
-    else if(lan=="en")
-    {
-        sta=translator.load("en.qm");
-    }
-
-    if(sta)
-    {
-        QApplication::installTranslator(&translator);
-        refrashToolBar();                      //刷新自定义语言翻译
-    }
-}
 
 quint8 Canvas::caputerRect(QRectF t_rect,qreal t_x,qreal t_y)
 {

@@ -27,22 +27,16 @@ SOURCES += \
         main.cpp \
         screenshottool.cpp \
     canvas.cpp \
-    KeyString.cpp \
-    hotkeybar.cpp \
     rectpaint.cpp \
     linepaint.cpp
 
 HEADERS += \
         screenshottool.h \
     canvas.h \
-    KeyString.h \
-    hotkeybar.h \
-    operateSet.h \
     rectpaint.h \
     linepaint.h
 
-FORMS += \
-        screenshottool.ui
+FORMS +=
 
 RESOURCES += \
     screenshottool.qrc
