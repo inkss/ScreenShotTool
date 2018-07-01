@@ -1,13 +1,6 @@
 #ifndef CANVAS_H
 #define CANVAS_H
 
-/*
- * Author:qiuzhiqian
- * Email:xia_mengliang@163.com
- * Github:https://github.com/qiuzhiqian
- * Date:2017.07.23
- **/
-
 #include <QApplication>
 #include <QWidget>
 #include <QLabel>
@@ -20,16 +13,11 @@
 #include <QGuiApplication>
 #include <QPen>
 #include <QApplication>
-
 #include <QPushButton>
-
 #include <QFileDialog>
-
 #include <QHBoxLayout>
 #include <QClipboard>
-
 #include <QComboBox>
-
 #include <QColorDialog>
 
 #include "linepaint.h"
@@ -45,21 +33,16 @@ enum DrawStatus {
 class Canvas : public QWidget
 {
     Q_OBJECT
+
 public:
     explicit Canvas(QWidget *parent = 0);
-
     void setbgPixmap(QPixmap &px);
     void shootScreen(QRectF &rect);
-
     void canvasInit();
-
     void initToolBar();
     void showToolBar();
     void hideToolBar();
-
-
     quint8 caputerRect(QRectF t_rect,qreal t_x,qreal t_y);
-
     RectPaint getRectF(QPointF p1,QPointF p2);    //通过两个坐标点生成矩形
 
 
@@ -72,7 +55,6 @@ public slots:
     void slt_saveFile();            //保存到文件
     void slt_saveClipboard();       //保存到剪切板
     void slt_cancel();
-
     void slt_changePenWidth(QString s);
     void slt_changePenColor();
     void slt_changePenStyle(int index);
@@ -80,23 +62,17 @@ public slots:
 private:
     int screen_width=0,screen_height=0;
     quint8 okFlag=0;
-
     QPointF pointS;     //鼠标绘制起点
     QPointF pointE;     //鼠标绘制终点
     RectPaint shotArea;    //截图区域
-
     QList<LinePaint> lineList;         //直线列表
     QList<RectPaint> rectList;         //矩形列表
     QList<RectPaint> ellipseList;      //椭圆列表
-
     QPointF pointDrag;              //拖拽点
-
     DrawStatus rectFlag=DrawStatus::waitDraw;
     quint8 drawEditFlag=0;          //绘图修改
-
     QPixmap fullPixmap;         //原始全屏图片
     QPixmap originalPixmap;
-
     QWidget *toolbar;           //工具条
     QPushButton *btn_saveFile;
     QPushButton *btn_saveClipboard;
@@ -104,19 +80,14 @@ private:
     QPushButton *btn_drawLine;      //画直线
     QPushButton *btn_drawRect;      //画矩形
     QPushButton *btn_drawEllipse;   //画椭圆
-
     QPen drawPen;                   //线宽颜色风格
     QWidget *shapeToolBar;
     QWidget *textToolBar;
-
     QComboBox *cbx_lineSize;
     QPushButton *btn_colorSelect;
     QComboBox *cbx_lineStyle;
-
     QClipboard *clipboard;
-
     quint8 cursorCaptureFlag=0;
-
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);

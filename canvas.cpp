@@ -9,14 +9,6 @@
 #include "operateSet.h"
 #include <QTranslator>
 
-/*
- * Author:qiuzhiqian
- * Email:xia_mengliang@163.com
- * Github:https://github.com/qiuzhiqian
- * Date:2017.07.23
- * Description:这个类主要用来创建一个桌面的截图画布
- **/
-
 //考虑继承QLabel
 Canvas::Canvas(QWidget *parent) : QWidget(parent)
 {
@@ -25,7 +17,6 @@ Canvas::Canvas(QWidget *parent) : QWidget(parent)
     screen_width=screenGeometry.width();
     screen_height=screenGeometry.height();
 
-    //this->setWindowFlags(Qt::WindowStaysOnTopHint);     //窗口置顶
     this->raise();                      //软置顶
     this->showFullScreen();             //画布全屏显示
 
@@ -422,6 +413,7 @@ void Canvas::paintEvent(QPaintEvent *e)
     QWidget::paintEvent(e);
 }
 
+//　背景色填充
 void Canvas::setbgPixmap(QPixmap &px)
 {
     fullPixmap=px;
@@ -591,8 +583,7 @@ void Canvas::hideToolBar()
     toolbar->setVisible(false);
 }
 
-
-
+//　画直线
 void Canvas::slt_drawLine()
 {
     if(drawEditFlag!=1)
@@ -617,6 +608,7 @@ void Canvas::slt_drawLine()
     }
 }
 
+//　画矩形
 void Canvas::slt_drawRect()
 {
     if(drawEditFlag!=2)
@@ -641,6 +633,7 @@ void Canvas::slt_drawRect()
     }
 }
 
+//　画椭圆
 void Canvas::slt_drawEllipse()
 {
     if(drawEditFlag!=3)
@@ -665,6 +658,7 @@ void Canvas::slt_drawEllipse()
     }
 }
 
+//　保存到文件
 void Canvas::slt_saveFile()
 {
     shootScreen(shotArea);
@@ -693,6 +687,7 @@ void Canvas::slt_saveFile()
     slt_cancel();
 }
 
+//　保存到剪切板
 void Canvas::slt_saveClipboard()
 {
     shootScreen(shotArea);
@@ -700,17 +695,20 @@ void Canvas::slt_saveClipboard()
     slt_cancel();
 }
 
+//　取消退出
 void Canvas::slt_cancel()
 {
     rectFlag=DrawStatus::waitDraw;
     this->close();
 }
 
+//　改变画笔宽度
 void Canvas::slt_changePenWidth(QString s)
 {
     drawPen.setWidth(s.toInt());
 }
 
+//　改变画笔颜色
 void Canvas::slt_changePenColor()
 {
     QColor color = QColorDialog::getColor(Qt::blue);
@@ -725,6 +723,7 @@ void Canvas::slt_changePenColor()
     drawPen.setColor(color);
 }
 
+//　改变画笔样式
 void Canvas::slt_changePenStyle(int index)
 {
     switch(index)
@@ -782,8 +781,7 @@ RectPaint Canvas::getRectF(QPointF p1, QPointF p2)
     return rect;
 }
 
-
-
+//　附加工具栏
 quint8 Canvas::caputerRect(QRectF t_rect,qreal t_x,qreal t_y)
 {
     quint8 pos=0;

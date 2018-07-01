@@ -1,6 +1,8 @@
 #include "linepaint.h"
 #include <QDebug>
 
+//线绘图
+
 LinePaint::LinePaint() {}
 
 LinePaint::LinePaint(const QPoint &p1, const QPoint &p2):QLine(p1,p2) {}

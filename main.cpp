@@ -3,18 +3,14 @@
 #include <QGuiApplication>
 #include <QTranslator>
 
-/*
- * Author:qiuzhiqian
- * Email:xia_mengliang@163.com
- * Github:https://github.com/qiuzhiqian
- * Date:2017.07.23
- **/
-
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    a.setQuitOnLastWindowClosed(false);         //防止窗体全部掩藏后意外退出
+    //防止窗体全部掩藏后意外退出
+    //否则在截图完成之后，全部隐藏会造成程序退出
+    a.setQuitOnLastWindowClosed(false);
+
     ScreenShotTool w;
     w.hide();
 

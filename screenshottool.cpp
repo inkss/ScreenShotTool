@@ -3,16 +3,7 @@
 
 #include <QDebug>
 #include <QSettings>
-
 #include <QTranslator>
-
-/*
- * Author:qiuzhiqian
- * Email:xia_mengliang@163.com
- * Github:https://github.com/qiuzhiqian
- * Date:2017.07.23
- * Description:这个类主要用来进行截图工具的设置
- **/
 
 /*
  * 画图原理
@@ -63,19 +54,19 @@ void ScreenShotTool::initTray()             //初始化托盘
     m_systemTray->show();
 
     connect(m_systemTray,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),this,SLOT(slt_clickTray(QSystemTrayIcon::ActivationReason)));
-    connect(exitAction,SIGNAL(triggered(bool)),this,SLOT(slt_exitAction()));   //连接 点击与双击 槽
+    connect(exitAction,SIGNAL(triggered(bool)),this,SLOT(slt_exitAction()));
 }
 
 void ScreenShotTool::slt_clickTray(QSystemTrayIcon::ActivationReason reason)
 {
     switch(reason) {
         case QSystemTrayIcon::Trigger:
-            //单击托盘图标,开始截图
+            //单击托盘图标,显示菜单
             ss_start();
             break;
         case QSystemTrayIcon::DoubleClick:
             //双击托盘图标
-            //双击后显示设置窗口
+            //双击后进行截图
             this->show();
             break;
         default:

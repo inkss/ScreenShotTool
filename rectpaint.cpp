@@ -1,5 +1,7 @@
 #include "rectpaint.h"
 
+//矩形绘图
+
 RectPaint::RectPaint() {}
 
 RectPaint::RectPaint(const QPointF &topLeft, const QSizeF &size):QRectF(topLeft,size) {}
